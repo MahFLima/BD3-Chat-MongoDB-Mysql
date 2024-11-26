@@ -36,13 +36,10 @@
         />
         <br />
         <button type="submit">Enviar</button>
-
-        <!-- Carega todas as mensagens enviadas: -->
-        <div class="messages"></div>
       </form>
+      <!-- Carega todas as mensagens enviadas: -->
+      <div class="messages"></div>
     </div>
-
-    <script src="/socket.io/socket.io.js"></script>
 
     <script>
       /* Conecta o docketIO da aplicação web frontend com o socketIO da aplicação backend nodeJS: */
@@ -61,8 +58,8 @@
       }
 
       /* 
-                Recebe e exibe todas as mensagens já enviadas por todos os usuário do chat- Conversa diretamente com o metódo emit da linha 51 do backend: 
-            */
+      Recebe e exibe todas as mensagens já enviadas por todos os usuário do chat- Conversa diretamente com o metódo emit da linha 51 do backend: 
+      */
       socket.on("previousMessage", function (messages) {
         for (message of messages) {
           renderMessage(message);
@@ -70,8 +67,8 @@
       });
 
       /* 
-                Recebe as mensagens emitidas pela ação bradcast da aplicação backend e rederiza essas na tela - Conversa diretamente com o método socket.broadcast.emit('receivedMessage', data), linha 60 do backend:
-            */
+      Recebe as mensagens emitidas pela ação bradcast da aplicação backend e rederiza essas na tela - Conversa diretamente com o método socket.broadcast.emit('receivedMessage', data), linha 60 do backend:
+      */
       socket.on("receivedMessage", function (message) {
         renderMessage(message);
       });
@@ -81,8 +78,8 @@
         event.preventDefault();
 
         /* Recupera os valores dos campos do formulário: */
-        var author = $("input[name=username]").val();
-        var message = $("input[name=message]").val();
+        let author = $("input[name=username]").val();
+        let message = $("input[name=message]").val();
 
         /* Verfica se o usuário preencheu todos os campos: */
         if (author.length && message.length) {

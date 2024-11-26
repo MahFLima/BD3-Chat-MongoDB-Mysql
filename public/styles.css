@@ -27,7 +27,13 @@ body{
   font-weight: bold;
   font-size: 20px;
   color: #FFF;
+  cursor: pointer;
 }
+
+button:hover{
+  opacity: 70%;
+}
+
 
 .messages{
   width: auto;

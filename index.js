@@ -20,17 +20,24 @@ let messages = []
 
 io.on('connection', socket => {
   console.log('Novo usuario conectado! ' + socket.id)
+
+  /* recuperar e manter as mensagens do frontend para o backend */
+  socket.emit('previousMessage', messages)
+
+  /* dispara ações quando recebe as mensagens do frontend */
+  socket.on("sendMessage", data => {
+    
+    // Adiciona a nova mensagem no final do array(messages)
+    messages.push(data)
+  
+    // Propaga a mensagem para todos os usuarios conectados no chat
+    socket.broadcast.emit('')
+  
+  })
+
 })
 
 server.listen(3000, () => {
   console.log('listening on port 3000');
 })
 
-// 1001001007777777700107777777777777777777777770100
-// 1001001007777777700107777777777777777777777770100
-// 1000100107777777701000100100077777777010100100100
-// 1000100107777777701000100100077777777010100100100
-// 0100101007777777700010001010077777777010101001000
-// 0100101007777777700010001010077777777010101001000
-// 1010010007777777777777777001077777777010100010010
-// 1010010007777777777777777001077777777010100010010
